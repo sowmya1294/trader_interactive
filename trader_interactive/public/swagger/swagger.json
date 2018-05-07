@@ -1,0 +1,526 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "L5 Swagger API",
+        "description": "L5 Swagger API description",
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/listings": {
+            "get": {
+                "tags": [
+                    "listings"
+                ],
+                "summary": "Get list of listings",
+                "description": "Returns list of listings",
+                "operationId": "getListings",
+                "responses": {
+                    "200": {
+                        "description": "Listing Details Found"
+                    },
+                    "500": {
+                        "description": "Listing Details Not Found"
+                    }
+                }
+            }
+        },
+        "/api/listing-details/id={id}": {
+            "get": {
+                "tags": [
+                    "listing-details"
+                ],
+                "summary": "Get Individual Listing Details",
+                "description": "Returns Individual Listing Details",
+                "operationId": "getListingDetails",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "listing id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Individual Listing Details Found"
+                    },
+                    "500": {
+                        "description": "Individual Listing Details Not Found"
+                    }
+                }
+            }
+        },
+        "/api/search-listing-details/make={make}/model={model}/min_price={min_price}/max_price={max_price}": {
+            "get": {
+                "tags": [
+                    "search-listing-details"
+                ],
+                "summary": "Get Searched Listing Details",
+                "description": "Returns Searched Listing Details",
+                "operationId": "getUserListings",
+                "parameters": [
+                    {
+                        "name": "make",
+                        "in": "path",
+                        "description": "make",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "model",
+                        "in": "path",
+                        "description": "model name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "min_price",
+                        "in": "path",
+                        "description": "minimum price",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "max_price",
+                        "in": "path",
+                        "description": "maximum price",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Searched Listing Details Found"
+                    },
+                    "500": {
+                        "description": "Searched Listing Details Not Found"
+                    }
+                }
+            }
+        },
+        "/api/create-listings": {
+            "post": {
+                "tags": [
+                    "create-listings"
+                ],
+                "summary": "Create listings",
+                "description": "Create listings",
+                "operationId": "createListings",
+                "parameters": [
+                    {
+                        "name": "make",
+                        "in": "formData",
+                        "description": "make",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "model",
+                        "in": "formData",
+                        "description": "model",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "year",
+                        "in": "formData",
+                        "description": "year",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "description",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "price",
+                        "in": "formData",
+                        "description": "price",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "colour",
+                        "in": "formData",
+                        "description": "colour",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail_1",
+                        "in": "formData",
+                        "description": "thumbnail_1",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        },
+                        "type": "file"
+                    },
+                    {
+                        "name": "thumbnail_2",
+                        "in": "formData",
+                        "description": "thumbnail_2",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        },
+                        "type": "file"
+                    },
+                    {
+                        "name": "thumbnail_3",
+                        "in": "formData",
+                        "description": "thumbnail_3",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        },
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listings Created Successfully"
+                    },
+                    "500": {
+                        "description": "Listings Not Created"
+                    }
+                }
+            }
+        },
+        "/api/contact": {
+            "post": {
+                "tags": [
+                    "contact"
+                ],
+                "summary": "Sending Email",
+                "description": "Sending Email",
+                "operationId": "contact",
+                "parameters": [
+                    {
+                        "name": "msg",
+                        "in": "body",
+                        "description": "msg",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                                "msg": "john"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message Send Successfully"
+                    }
+                }
+            }
+        },
+        "/api/reviews/id={id}": {
+            "get": {
+                "tags": [
+                    "reviews"
+                ],
+                "summary": "Get Individual Listing Review Details",
+                "description": "Returns Individual Listing Review Details",
+                "operationId": "getUserReviewDetails",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "seller id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Individual Listing Review Details Found"
+                    },
+                    "500": {
+                        "description": "Individual Listing Review Details Not Found"
+                    }
+                }
+            }
+        },
+        "/api/create-reviews": {
+            "post": {
+                "tags": [
+                    "create-reviews"
+                ],
+                "summary": "Create reviews",
+                "description": "Create reviews",
+                "operationId": "createReviews",
+                "parameters": [
+                    {
+                        "name": "reviewer_name",
+                        "in": "body",
+                        "description": "reviewer_name",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                                "reviewer_name": "test",
+                                "seller_id": "1",
+                                "rating": "2",
+                                "reviews": "nice"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reviews Created Successfully"
+                    },
+                    "500": {
+                        "description": "Reviews Not Created"
+                    }
+                }
+            }
+        },
+        "/api/sellers": {
+            "get": {
+                "tags": [
+                    "sellers"
+                ],
+                "summary": "Get list of sellers",
+                "description": "Returns list of sellers",
+                "operationId": "getSellers",
+                "responses": {
+                    "200": {
+                        "description": "Sellers Details Found"
+                    },
+                    "500": {
+                        "description": "Sellers Details Not Found"
+                    }
+                }
+            }
+        },
+        "/api/seller-details/id={id}": {
+            "get": {
+                "tags": [
+                    "seller-details"
+                ],
+                "summary": "Get Individual Seller Details",
+                "description": "Returns Individual Seller Details",
+                "operationId": "getSellerDetails",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "seller id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Individual Seller Details Found"
+                    },
+                    "500": {
+                        "description": "Individual Seller Details Not Found"
+                    }
+                }
+            }
+        },
+        "/api/seller-listing-details/id={id}": {
+            "get": {
+                "tags": [
+                    "seller-listing-details"
+                ],
+                "summary": "Get Seller Listing Details",
+                "description": "Returns Seller Listing Details",
+                "operationId": "getIndividualSellerDetails",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "seller id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Seller Listing Details Found"
+                    },
+                    "500": {
+                        "description": "Seller Listing Details Not Found"
+                    }
+                }
+            }
+        },
+        "/api/seller-individual-listing-details/id={id}/type={type}": {
+            "get": {
+                "tags": [
+                    "seller-individual-listing-details"
+                ],
+                "summary": "Get Seller Individual Listing Details",
+                "description": "Returns Seller Individual Listing Details",
+                "operationId": "getSellerListingDetails",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "seller id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "listing type",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Seller Individual Listing Details Found"
+                    },
+                    "500": {
+                        "description": "Seller Individual Listing Details Not Found"
+                    }
+                }
+            }
+        },
+        "/api/create-sellers": {
+            "post": {
+                "tags": [
+                    "create-sellers"
+                ],
+                "summary": "Create sellers",
+                "description": "Create sellers",
+                "operationId": "createSellers",
+                "parameters": [
+                    {
+                        "name": "createSellers",
+                        "in": "body",
+                        "description": "createSellers",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                                "type": "Dealer",
+                                "name": "DealerTest",
+                                "address": "swagger",
+                                "phone": "987654321",
+                                "email": "john@example.com",
+                                "website": "ohn@example.com"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sellers Created Successfully"
+                    },
+                    "500": {
+                        "description": "Sellers Not Created"
+                    }
+                }
+            }
+        },
+        "/api/create-sellers-listings": {
+            "post": {
+                "tags": [
+                    "create-sellers-listings"
+                ],
+                "summary": "Create sellers listings",
+                "description": "Create sellers listings",
+                "operationId": "createSellersListings",
+                "parameters": [
+                    {
+                        "name": "seller_listings",
+                        "in": "body",
+                        "description": "seller_listings",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                                "seller_id": "1",
+                                "listing_id": "2",
+                                "selling_price": "2131432"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Seller's Listings Created Successfully"
+                    },
+                    "500": {
+                        "description": "Seller's Listings Not Created"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get list of users",
+                "description": "Returns list of users",
+                "operationId": "getUsers",
+                "responses": {
+                    "200": {
+                        "description": "User Details Found"
+                    },
+                    "500": {
+                        "description": "User Details Not Found"
+                    }
+                }
+            }
+        },
+        "/api/create-users": {
+            "post": {
+                "tags": [
+                    "create-users"
+                ],
+                "summary": "Create User",
+                "description": "Create User",
+                "operationId": "createUsers",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "description": "name",
+                        "required": true,
+                        "schema": {
+                            "type": "multipart/form-data",
+                            "example": {
+                                "name": "john",
+                                "email": "john@example.com",
+                                "password": "swagger",
+                                "phone": "987654321"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Created Successfully"
+                    },
+                    "500": {
+                        "description": "User Not Created"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
